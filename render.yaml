@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: retry-api
+    env: node
+    buildCommand: cd retry-api && npm install
+    startCommand: cd retry-api && npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: MAX_IPS
+        value: 1000
+    healthCheckPath: /health
+
