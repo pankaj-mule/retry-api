@@ -133,6 +133,28 @@ app.get('/api/status', (req, res) => {
   });
 });
 
+// Static config endpoint for solution customizations
+app.get('/sdpms/api/v1/solutions/:solutionId/customization/config', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Success',
+    data: {
+      customizations: [
+        {
+          module_id: 20,
+          folderName: 'jb_pro_1',
+          project_id: '12345678',
+          library_name: '@gs/bot_runtime_library',
+          library_version: '6.2.5',
+          module_service_id: 'YOUR_MODULE_SERVICE_ID',
+          customization_hook_type: 'jb_pro',
+          customization_hook_instance: '1'
+        }
+      ]
+    }
+  });
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Retry API server is running on http://localhost:${PORT}`);
@@ -141,5 +163,6 @@ app.listen(PORT, () => {
   console.log(`Status endpoint: http://localhost:${PORT}/api/status`);
   console.log(`Reset endpoint: http://localhost:${PORT}/api/reset (POST)`);
   console.log(`Stats endpoint: http://localhost:${PORT}/api/stats`);
+  console.log(`Customization config endpoint: http://localhost:${PORT}/sdpms/api/v1/solutions/:solutionId/customization/config`);
 });
 
